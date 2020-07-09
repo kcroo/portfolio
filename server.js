@@ -21,16 +21,25 @@ nunjucks.configure('views', {
 
 // *** routes *** 
 
-// welcome page: sends authentication request to google
 app.get('/', async(req, res) => {
   res.render("index.html");
 });
 
-// welcome page: sends authentication request to google
 app.get('/maps', async(req, res) => {
   res.render("maps.html");
 });
 
+app.get('/webapps', async(req, res) => {
+  res.render("webapps.html");
+});
+
+app.get('/consoleapps', async(req, res) => {
+  res.render("consoleapps.html");
+});
+
+app.get('/scripts', async(req, res) => {
+  res.render("scripts.html");
+});
 
 // listen to GAE port if it exists; 8001 otherwise
 const PORT = process.env.PORT || 5000;
