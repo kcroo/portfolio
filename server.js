@@ -26,12 +26,11 @@ app.get('/', async(req, res) => {
   res.render("index.html");
 });
 
-// no other methods allowed for /trails
-app.all('/', async(req, res) => {
-  const result = methodNotAllowedError;
-  res.setHeader('Allow', 'GET, POST')
-  res.status(result.code).send(result.data);
+// welcome page: sends authentication request to google
+app.get('/maps', async(req, res) => {
+  res.render("maps.html");
 });
+
 
 // listen to GAE port if it exists; 8001 otherwise
 const PORT = process.env.PORT || 5000;

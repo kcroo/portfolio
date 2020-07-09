@@ -5,3 +5,13 @@ h2, h4 {
 p {
     color: #060061;
 }
+
+img {
+    width: 80%
+}
+
+hr {
+    height: 0px;
+    border: none;
+    border-top: 5px solid rgb(73, 72, 72);
+}
