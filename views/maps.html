@@ -2,18 +2,49 @@
 
 {% block content %}
 
-  <div class='container'>
+  <div class="container">
     <h1>Maps</h1>
-    <div>
-        <p><a href="#elevation">Elevation map of northern Umatilla National Forest</a></p>
-        <p><a href="#slope">Slope map of northern Umatilla National Forest</a></p>
-        <p><a href="#camping">Camping suitability map of Walla Walla Ranger District</a></p>
+    <div class="row mt-3 mb-5">
+        <div class="col-sm">
+            <div class="card h-100">
+                <div class="card-body">
+                    <img class="card-img-top" src="/public/elevation_small.jpg" alt="Small image of the elevation map">
+                    <h5 class="card-title">Elevation Map</h5>
+                    <p class="card-text">Elevation of northern Umatilla National Forest</p>
+                    <a href="#elevation" class="card-link">Link</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card h-100">
+                <div class="card-body">
+                    <img class="card-img-top custom-card-image" src="/public/slope_small.jpg" alt="Small image of the slope map">
+                    <h5 class="card-title">Slope Map</h5>
+                    <p class="card-text">Slope of northern Umatilla National Forest</p>
+                    <br>
+                    <a href="#slope" class="card-link">Link</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card h-100">
+                <div class="card-body">
+                    <img class="card-img-top custom-card-image" src="/public/suitability_small.jpg" alt="Small image of the slope map">
+                    <h5 class="card-title">Suitability Analysis Map</h5>
+                    <p class="card-text">Camping suitability map of Walla Walla Ranger District</p>
+                    <a href="#camping" class="card-link">Link</a>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <hr>
+
     <div id="elevation" class="row justify-content-center">
         <h3>Elevation map of northern Umatilla National Forest</h3>
         <img src="/public/elevation_mid_quality.jpg" alt="">
     </div>
-    <div>
+    <div class="my-2">
         <p>For this map, I gathered DEM datasets for southeastern WA from the <a href="http://gis.ess.washington.edu/data/raster/tenmeter/byquad/"> University of Washington.</a> For northeastern OR, I downloaded the data from the state of Oregon's <a href="https://www.oregon.gov/geo/Pages/sdlibrary.aspx">(somewhat glitchy) FTP server</a>.</p>
 
         <p>I used the Clip Raster tool to match the DEM and TIF files to the forest's boundaries. Since there were so many files, I wrote a small ArcPy script to expedite the process. An added bonus is that this script can be modified for any task that needs to iterate through files inside a folder and perform some task on each file.</p>
@@ -45,7 +76,7 @@
         <img src="/public/slope_mid_quality.jpg" alt="">
     </div>
 
-    <div>
+    <div class="my-2">
         <p>To generate slope, I used the Slope tool, which automatically calculates slope from a DEM raster. This created a highly detailed slope raster that  my computer could hardly render, so I simplified it with the Aggregate tool. For the map, I chose a similar style and color scheme as the elevation map to highlight areas of high slope.</p>
     </div>
 
@@ -56,7 +87,7 @@
         <img src="/public/camping_suitability_ww.jpg" alt="">
     </div>   
 
-    <div>
+    <div class="my-2">
         <p>This map was produced due to my unending quest to find optimal dispersed camping sites accessible by vehicle in my local national forest. I aimed to create a tool that will help me find campsites within a certain elevation range with minimal slope, that are also close to roads and a water source. This analysis uses a binary system of suitable-nonsuitable, but I would like to expand it to display a score of suitability for the entire ranger district. I created a model in Model Builder, so that it's simple to run the tool with different parameters.</p>
     </div>
 
@@ -64,7 +95,7 @@
         <img src="/public/model_camping.jpg" alt="">
     </div>
 
-    <div>
+    <div class="my-2">
         <p>I used the Raster Calculator to create a raster of only areas that met certain conditions: between 3000 and 5000ft in elevation; at or below 10% slope; within 20m of a road and 100m of a stream. For my end product, I wanted a point representation of which areas would be worthwhile to investigate on my next camping trip. I converted the raster to a polygon using Raster to Polygon, then to points using Feature to Point. To eliminate any points within the wilderness (where I won't be able to drive and camp), I used the Erase tool. Still, many points were too close to each other and produced a busy map. The final step of the model is Integrate, to combine points that are within 200m of each other.
     </div>
     
