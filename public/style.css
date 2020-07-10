@@ -1,9 +1,9 @@
-h2, h4 {
-    color: #0b00a8;
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ubuntu', sans-serif;
 }
 
-p {
-    color: #060061;
+.navbar-brand, .dropdown-menu, .dropdown-item {
+    font-family: 'Ubuntu', sans-serif;
 }
 
 img {
