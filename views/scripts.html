@@ -3,8 +3,98 @@
 {% block content %}
 
   <div class="container">
-    <h1>Automation Apps</h1>
-    <p>Coming soon!</p>
+    <h1>Scripts and Console Apps</h1>
+
+    <div class="row mt-3 mb-5">
+      <div class="col-sm">
+        <div class="card h-100">
+            <div class="card-body">
+              <img class="card-img-top" src="/public/bp_script.jpg" alt="Screenshot of script results in Google Colab">
+              <h5 class="card-title">Sample Ballot Testing</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Python, Selenium, PostgreSQL, Google Colab</h6>
+              <p class="card-text">
+                I use this script at work to test new districts in Ballotpedia's Sample Ballot Lookup. 
+              </p>
+              <a href="https://github.com/kcroo/bp-sample-ballot-test" class="card-link" target="_blank">Github Link</a>
+              <a href="#bp-sample-ballot" class="card-link">Details</a>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="card h-100">
+          <div class="card-body">
+              <img class="card-img-top" src="/public/soils_toolbox_small.jpg" alt="Screenshot of soils toolbox in ArcGIS Pro">
+              <h5 class="card-title">ArcGIS Azimuth Tool</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Python, ArcPy</h6>
+              <p class="card-text">
+                This custom ArcGIS tool automates part of a soil technician's GIS workflow in creating azimuth paths across a soil monitoring unit.
+              </p>
+              <a href="https://github.com/kcroo/ArcGISAzimuthTool" class="card-link" target="_blank">Github Link</a>
+              <a href="#azimuth-tool" class="card-link">Details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="card h-100">
+          <div class="card-body">
+              <img class="card-img-top" src="/public/church.jpg" alt="Title screen of Church of the Damned game">
+              <h5 class="card-title">Church of the Damned game</h5>
+              <h6 class="card-subtitle mb-2 text-muted">C++</h6>
+              <p class="card-text">
+                This action-RPG console game features 2D exploration, combat, and inventory management.
+              </p>
+              <a href="https://github.com/kcroo/ChurchOfTheDamned" class="card-link"  target="_blank">Github Link</a>
+              <a href="#church-game" class="card-link">Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bp-sample-ballot" class="row justify-content-center">
+      <h3>Sample Ballot Testing</h3>
+      <img src="/public/bp_script.jpg" alt="Screenshot of script results in Google Colab">
+    </div>
+    <div class="my-2">
+      <p>A big part of my job is researching and adding new district boundaries (e.g. school board districts or special districts) to the Ballotpedia database. Part of this task is testing the districts in the <a href="https://ballotpedia.org/Sample_Ballot_Lookup" target="_blank">Sample Ballot Lookup</a>, which takes an address or coordinate and tells the user which voting districts that location falls in. Manually entering points into the website and checking the results is tedious and error-prone, so I decided to write a script to test random points within new districts.</p>
+
+      <p>The end product is now a Google Colab, which is able to install all necessary Python packages and run the script without the user needing to set up the correct environment on their home computer. The user enters which district they want to test; the election date (optional); and the number of random points in the district (also optional). Then the script prints which points were displayed on the sample ballot; which ones had candidates; and if there were any duplicate types of districts (for example, multiple judicial districts). It also displays a map in the console with the district boundary and the random points.</p>
+
+      <p>While I had hoped that loading the sample ballot page would be as simple as requesting the page's URL in Python, it turned out that most of the content on Ballotpedia pages is loaded asynchronously. That is, a simple GET request in Python doesn't wait for all of the content to load. I learned how to use the Selenium library, which is a common framework for web application testing. It allows for controlling a web browser and waiting for all asynchronous content. The script runs exactly how a user would use it: it enters a location, clicks continue, chooses an election date, and views the results. Pretty cool!</p>
+
+      <p>To create the random points, I used a PostGIS function called ST_GeneratePoints(). I figured using the database to create the points, rather than in the Python script itself, would be much faster. I also query the database for other district information, so that the user only has to enter the district ID.</p>
+
+      <p>To speed up the script, I added multithreading to run multiple sample ballot lookups at once. Each thread opens its own web browser and runs one of the random points through the sample ballot.</p>
+
+      <p>While the script is pretty easy to use in Google Colab, I'm also working on creating a web version that will be more user-friendly and display an interactive map of the results.</p>
+    </div>
+
+    <hr>
+
+    <div id="azimuth-tool" class="row justify-content-center">
+      <h3>ArcGIS Azimuth Tool</h3>
+      <img src="/public/azimuth_example_crop.jpg" alt="Screenshot of azimuth tool output">
+    </div>
+    <div class="my-2">
+      <p>One of my main office tasks as a soils technician with the Forest Service was creating maps of upcoming soil units. To conduct soil surveys, we would follow compass azimuths to walk four transects back and forth across the unit, digging holes periodically to assess soil condition. I had to follow the same steps to create each map--which made the process a perfect candidate for automation.</p>
+
+      <p>With this tool, the only thing a soils technician must do is create a new shapefile and draw in four lines that provide good coverage of the soil unit. The script handles the rest: calculating the azimuth of each line; editing its attributes according to specs; and adding it to the map. It reduced the time needed to make each map by a few minutes. Not much, but it adds up!</p>
+
+      <p>For me, the trickiest parts were figuring out how to make a Python tool in the first place; how to update attributes using cursors; and how to access the ArcMap MXD and dataframe. Beyond that, it was simple Python.</p>
+    </div>
+
+    <hr>
+
+    <div id="azimuth-tool" class="row justify-content-center">
+      <h3>Church of the Damned</h3>
+      <img src="/public/church_gameplay.gif" alt="GIF of Church of the Damned gameplay">
+    </div>
+    <div class="my-2">
+      <p>This project was a large undertaking. Creating 2D rooms, a combat system, an inventory system, weapons, armor, potions, monsters... but luckily no graphics! This game has the player, the hero, fighting to reclaim their village's church from the forces of darkness. There are 5 rooms in total, all with increasingly menacing creatures to defeat. The hero starts with rudimentary weapons and armor but can find better ones in treasure boxes or by looting enemies. HP and magic can be restored through holy water and sacramental bread. There is even a bell which, when rung, summons a horde of monsters.</p>
+      
+      <p>I created this game for one of my computer science courses, which forbid the use of any C++ features such as vectors, maps, or smart pointers. Everything was done using raw arrays and pointers. After class was done, I took some time to upgrade the game to use more modern C++. Smart pointers were a particularly challenging thing to implement, because I often had to transfer ownership of a resource, for moving transfering a weapon from a treasure box to the player's inventory.</p>
+    </div>
 
   </div>
 

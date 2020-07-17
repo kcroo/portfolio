@@ -33,8 +33,8 @@ app.get('/webapps', async(req, res) => {
   res.render("webapps.html");
 });
 
-app.get('/consoleapps', async(req, res) => {
-  res.render("consoleapps.html");
+app.get('/scripts', async(req, res) => {
+  res.render("scripts.html");
 });
 
 app.get('/scripts', async(req, res) => {
