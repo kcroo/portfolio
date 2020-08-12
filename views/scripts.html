@@ -3,7 +3,9 @@
 {% block content %}
 
   <div class="container">
-    <h1>Scripts and Console Apps</h1>
+    <div class="page-title">
+      <h1>Scripts and Console Apps</h1>
+    </div>
 
     <div class="row mt-3 mb-5">
       <div class="col-sm">
@@ -52,10 +54,14 @@
       </div>
     </div>
 
-    <div id="bp-sample-ballot" class="row justify-content-center">
+    <hr>
+
+    <div id="bp-sample-ballot" class="project-title">
       <h3>Sample Ballot Testing</h3>
-      <img src="/public/bp_script.jpg" alt="Screenshot of script results in Google Colab">
     </div>
+    
+    <img class = "project-image" src="/public/bp_script.jpg" alt="Screenshot of script results in Google Colab">
+
     <div class="my-2">
       <p>A big part of my job is researching and adding new district boundaries (e.g. school board districts or special districts) to the Ballotpedia database. Part of this task is testing the districts in the <a href="https://ballotpedia.org/Sample_Ballot_Lookup" target="_blank">Sample Ballot Lookup</a>, which takes an address or coordinate and tells the user which voting districts that location falls in. Manually entering points into the website and checking the results is tedious and error-prone, so I decided to write a script to test random points within new districts.</p>
 
@@ -72,10 +78,12 @@
 
     <hr>
 
-    <div id="azimuth-tool" class="row justify-content-center">
+    <div id="azimuth-tool" class="project-title">
       <h3>ArcGIS Azimuth Tool</h3>
-      <img src="/public/azimuth_example_crop.jpg" alt="Screenshot of azimuth tool output">
     </div>
+
+    <img class="project-image" src="/public/azimuth_example_crop.jpg" alt="Screenshot of azimuth tool output">
+
     <div class="my-2">
       <p>One of my main office tasks as a soils technician with the Forest Service was creating maps of upcoming soil units. To conduct soil surveys, we would follow compass azimuths to walk four transects back and forth across the unit, digging holes periodically to assess soil condition. I had to follow the same steps to create each map--which made the process a perfect candidate for automation.</p>
 
@@ -86,10 +94,12 @@
 
     <hr>
 
-    <div id="azimuth-tool" class="row justify-content-center">
+    <div id="azimuth-tool" class="project-title">
       <h3>Church of the Damned</h3>
-      <img src="/public/church_gameplay.gif" alt="GIF of Church of the Damned gameplay">
     </div>
+
+    <img class="project-image" src="/public/church_gameplay.gif" alt="GIF of Church of the Damned gameplay">
+
     <div class="my-2">
       <p>This project was a large undertaking. Creating 2D rooms, a combat system, an inventory system, weapons, armor, potions, monsters... but luckily no graphics! This game has the player, the hero, fighting to reclaim their village's church from the forces of darkness. There are 5 rooms in total, all with increasingly menacing creatures to defeat. The hero starts with rudimentary weapons and armor but can find better ones in treasure boxes or by looting enemies. HP and magic can be restored through holy water and sacramental bread. There is even a bell which, when rung, summons a horde of monsters.</p>
       

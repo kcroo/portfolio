@@ -3,7 +3,10 @@
 {% block content %}
 
   <div class="container">
-    <h1>Maps</h1>
+    <div class="page-title">
+        <h1>Maps</h1>
+    </div>
+    
     <div class="row mt-3 mb-5">
         <div class="col-sm">
             <div class="card h-100">
@@ -40,10 +43,12 @@
 
     <hr>
 
-    <div id="elevation" class="row justify-content-center">
+    <div id="elevation" class="project-title">
         <h3>Elevation map of northern Umatilla National Forest</h3>
-        <img src="/public/elevation_mid_quality.jpg" alt="">
     </div>
+
+    <img class="project-image" src="/public/elevation_mid_quality.jpg" alt="">
+
     <div class="my-2">
         <p>For this map, I gathered DEM datasets for southeastern WA from the <a href="http://gis.ess.washington.edu/data/raster/tenmeter/byquad/"> University of Washington.</a> For northeastern OR, I downloaded the data from the state of Oregon's <a href="https://www.oregon.gov/geo/Pages/sdlibrary.aspx">(somewhat glitchy) FTP server</a>.</p>
 
@@ -71,10 +76,11 @@
         
     <hr>
               
-    <div id="slope" class="row justify-content-center">
+    <div id="slope" class="project-title">
         <h3>Slope map of northern Umatilla National Forest</h3>
-        <img src="/public/slope_mid_quality.jpg" alt="">
     </div>
+
+    <img class="project-image" src="/public/slope_mid_quality.jpg" alt="">
 
     <div class="my-2">
         <p>To generate slope, I used the Slope tool, which automatically calculates slope from a DEM raster. This created a highly detailed slope raster that  my computer could hardly render, so I simplified it with the Aggregate tool. For the map, I chose a similar style and color scheme as the elevation map to highlight areas of high slope.</p>
@@ -82,18 +88,17 @@
 
     <hr>
 
-    <div id="camping" class="row justify-content-center">
+    <div id="camping" class="project-title">
         <h3>Camping suitability map of Walla Walla Ranger District</h3>
-        <img src="/public/camping_suitability_ww.jpg" alt="">
     </div>   
+
+    <img class="project-image" src="/public/camping_suitability_ww.jpg" alt="">
 
     <div class="my-2">
         <p>This map was produced due to my unending quest to find optimal dispersed camping sites accessible by vehicle in my local national forest. I aimed to create a tool that will help me find campsites within a certain elevation range with minimal slope, that are also close to roads and a water source. This analysis uses a binary system of suitable-nonsuitable, but I would like to expand it to display a score of suitability for the entire ranger district. I created a model in Model Builder, so that it's simple to run the tool with different parameters.</p>
     </div>
 
-    <div class="row justify-content-center">
-        <img src="/public/model_camping.jpg" alt="">
-    </div>
+    <img class="project-image" src="/public/model_camping.jpg" alt="">
 
     <div class="my-2">
         <p>I used the Raster Calculator to create a raster of only areas that met certain conditions: between 3000 and 5000ft in elevation; at or below 10% slope; within 20m of a road and 100m of a stream. For my end product, I wanted a point representation of which areas would be worthwhile to investigate on my next camping trip. I converted the raster to a polygon using Raster to Polygon, then to points using Feature to Point. To eliminate any points within the wilderness (where I won't be able to drive and camp), I used the Erase tool. Still, many points were too close to each other and produced a busy map. The final step of the model is Integrate, to combine points that are within 200m of each other.
