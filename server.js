@@ -22,19 +22,19 @@ nunjucks.configure('views', {
 // *** routes *** 
 
 app.get('/', async(req, res) => {
-  res.render("index.html");
+  res.render("index.html", {title: 'Home'});
 });
 
 app.get('/maps', async(req, res) => {
-  res.render("maps.html");
+  res.render("maps.html", {title: 'Maps'});
 });
 
 app.get('/webapps', async(req, res) => {
-  res.render("webapps.html");
+  res.render("webapps.html", {title: 'Web Apps'});
 });
 
 app.get('/scripts', async(req, res) => {
-  res.render("scripts.html");
+  res.render("scripts.html", {title: 'Scripts'});
 });
 
 app.get('/scripts', async(req, res) => {
