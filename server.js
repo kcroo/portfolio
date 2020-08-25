@@ -12,6 +12,7 @@ const nunjucks = require('nunjucks');
 
 const app = express();
 app.use('/public', express.static('public'))
+app.use('/fonts', express.static(__dirname + '/node_modules/@fortawesome/fontawesome-free/'));
 app.use(bodyParser.json());
 
 nunjucks.configure('views', { 
@@ -25,8 +26,8 @@ app.get('/', async(req, res) => {
   res.render("index.html", {title: 'Home'});
 });
 
-app.get('/maps', async(req, res) => {
-  res.render("maps.html", {title: 'Maps'});
+app.get('/gis', async(req, res) => {
+  res.render("gis.html", {title: 'GIS'});
 });
 
 app.get('/webapps', async(req, res) => {
